@@ -28,6 +28,7 @@ model Meal {
   id String @id @default(uuid())
   name String
   date String
+  description String
   respectingRestriction Boolean @default(true) 
 
   userId String

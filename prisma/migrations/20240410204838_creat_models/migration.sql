@@ -12,7 +12,7 @@ CREATE TABLE "users" (
 CREATE TABLE "meals" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "date" TEXT NOT NULL,
     "respectingRestriction" BOOLEAN NOT NULL DEFAULT true,
     "userId" TEXT NOT NULL,
 

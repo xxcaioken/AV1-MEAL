@@ -12,12 +12,13 @@ class MealController{
     var a = await authController.canRunRequest(request, response);
 
         try{
-           const { name, date, respectingRestriction } = request.body
+           const { name, date, description, respectingRestriction } = request.body
            
            const meal = await prisma.meal.create({
                data: {
                 name,
                 date,
+                description,
                 respectingRestriction,
                 userId: a.user.id
                },
@@ -63,24 +64,25 @@ async update(request, response){
     var a = await authController.canRunRequest(request, response);
 
     try{
-        const { id,name, date, respectingRestriction } = request.body
+        const { name, date, description, respectingRestriction } = request.body
         console.log(id,name, date, respectingRestriction);
-        const mealtoupdate = prisma.meal.findUnique({
+        const mealtoupdate = await prisma.meal.findUnique({
             where: {
                 id: id,
                 userId: a.user.id
             }
         })
 
-        prisma.meal.update({
+        await prisma.meal.update({
             where: {
                 id: id,
                 userId: a.user.id
             },
             data: {
-                name : name != undefined ? name: mealtoupdate.name,
+                name,
                 date,
                 respectingRestriction,
+                description
             },
         });
 
